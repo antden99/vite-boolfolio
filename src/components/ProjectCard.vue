@@ -1,9 +1,7 @@
 <script>
 export default {
     name: 'ProjectCard',
-    props: {
-        project: Object,
-    },
+    props: ['project','url_Img'],
 
     data() {
         return {
@@ -15,7 +13,12 @@ export default {
 
 <template>
     <div class="card">
-        <img :src="project.cover_image" class="card-img-top" alt="Card image">
+        <template v-if="project.cover_image.startsWith('uploads')">
+            <img :src="url_Img + 'storage/' + project.cover_image" alt="">
+        </template>
+        <template v-else>
+            <img :src="project.cover_image" alt="">
+        </template>
         <div class="card-body">
             <h5 class="card-title">{{ project.name }}</h5>
             <div class="card-text">{{ project.start_date }}</div>
