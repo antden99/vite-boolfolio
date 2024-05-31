@@ -1,11 +1,12 @@
 <script>
+import ProjectCard from '../../components/ProjectCard.vue';
 import axios from 'axios';
-
-import { RouterLink, RouterView } from 'vue-router';
-
 export default {
+  name: 'ProjectsView',
 
-  name: 'App',
+  components: {
+    ProjectCard,
+  },
   data() {
     return {
       projectList: [],
@@ -13,8 +14,6 @@ export default {
       name_api: 'api/projects',
     }
   },
-
-
   mounted() {
 
     axios.get(this.base_api + this.name_api)
@@ -45,35 +44,21 @@ export default {
   }
 }
 
-
 </script>
 
 <template>
-
-  <h1>Vite-boolfolio</h1>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <RouterLink to="/">Home</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/projects">Projects</RouterLink>
-          </li>
-        </ul>
-      </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 gy-3" v-for="project in projectList.data">
+      <ProjectCard :project="project" :url_Img="base_api"></ProjectCard>
     </div>
-  </nav>
 
-  <div class="container">
-    <RouterView></RouterView>
+    <nav aria-label="..." class="mt-3">
+      <ul class="pagination pagination-lg">
+        <li class="page-item" v-for="pageNumber in projectList.last_page" @click="goTo(pageNumber)"><a class="page-link"
+            href="#">{{ pageNumber }}</a></li>
+      </ul>
+    </nav>
   </div>
 </template>
 
-<style scoped></style>
+<style></style>

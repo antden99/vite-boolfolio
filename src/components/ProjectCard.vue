@@ -25,10 +25,9 @@ export default {
 </template>
 
 <style>
-
 .card-img-top {
     width: 100%;
-    height: 300px; 
+    height: 300px;
     object-fit: cover;
     object-position: center;
 }
