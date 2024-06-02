@@ -6,43 +6,7 @@ import { RouterLink, RouterView } from 'vue-router';
 export default {
 
   name: 'App',
-  data() {
-    return {
-      projectList: [],
-      base_api: 'http://127.0.0.1:8000/',
-      name_api: 'api/projects',
-    }
-  },
 
-
-  mounted() {
-
-    axios.get(this.base_api + this.name_api)
-      .then(response => { //quando ottengo response, svolgo la funzione 
-        console.log(response.data);
-        this.projectList = response.data.projects; //salvo nell'array dichiarato in data, il risultato ottenuto dalla chiamata ajax
-        //console.log( this.projectList);
-      })
-      .catch(error => {
-        console.error('Errore durante la chiamata API:', error);
-      }); //aggiungo la catach per la gestione degli errori
-  },
-
-  methods: {
-    goTo(pageNumber) {
-
-      axios.get(this.base_api + this.name_api + `?page=${pageNumber}`) //ricordati che con  i backtick puoi utilizzare stringhe e variabili insieme con l'utilizzo del ${}
-
-        .then(response => { //quando ottengo response, svolgo la funzione 
-          console.log(response.data);
-          this.projectList = response.data.projects; //salvo nell'array dichiarato in data, il risultato ottenuto dalla chiamata ajax
-          //console.log( this.projectList);
-        })
-        .catch(error => {
-          console.error('Errore durante la chiamata API:', error);
-        }); //aggiungo la catach per la gestione degli errori
-    }
-  }
 }
 
 
@@ -51,29 +15,41 @@ export default {
 <template>
 
   <h1>Vite-boolfolio</h1>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <RouterLink to="/">Home</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/projects">Projects</RouterLink>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <div class="container">
-    <RouterView></RouterView>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid justify-content-center">
+
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <RouterLink to="home" class="nav-link">Home</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="projects" class="nav-link">Projects</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="about" class="nav-link">About</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="contacts" class="nav-link">Contacts</RouterLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
+
+
+  
+    <section class="container">
+      <RouterView></RouterView>
+    </section>
+  
 </template>
 
 <style scoped></style>

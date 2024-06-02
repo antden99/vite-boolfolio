@@ -3,10 +3,6 @@ export default {
     name: 'ProjectCard',
     props: ['project', 'url_Img'],
 
-    data() {
-        return {
-        }
-    },
 }
 
 </script>
