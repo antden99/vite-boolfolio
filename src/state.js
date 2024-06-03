@@ -12,7 +12,7 @@ export const state = reactive({
       .get(this.base_api + this.name_api)
       .then((response) => {
         //quando ottengo response, svolgo la funzione
-        console.log(response.data);
+        //console.log(response.data);
         this.projectList = response.data.projects; //salvo nell'array dichiarato in data, il risultato ottenuto dalla chiamata ajax
         //console.log( this.projectList);
       })
@@ -35,4 +35,5 @@ export const state = reactive({
         console.error("Errore durante la chiamata API:", error);
       }); //aggiungo la catach per la gestione degli errori
   },
+
 });

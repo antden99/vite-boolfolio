@@ -1,4 +1,6 @@
 <script>
+import { state } from '../state.js';
+
 export default {
     name: 'ProjectCard',
     props: ['project', 'url_Img'],
@@ -8,7 +10,7 @@ export default {
 </script>
 
 <template>
-    <div class="card ">
+    <div class="card" >
         <img :src="url_Img + 'storage/' + project.cover_image" alt="" v-if="project.cover_image.startsWith('uploads')"
             class="card-img-top">
         <img :src="project.cover_image" alt="" v-else class="card-img-top">
