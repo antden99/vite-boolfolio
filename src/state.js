@@ -36,4 +36,5 @@ export const state = reactive({
       }); //aggiungo la catach per la gestione degli errori
   },
 
+  
 });
